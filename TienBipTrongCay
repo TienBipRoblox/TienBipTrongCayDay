@@ -1,0 +1,25 @@
+-- Watering the plants
+local tool = script.Parent  -- The watering can
+local garden = workspace.Garden -- Where the garden is located
+
+tool.Activated:Connect(function()
+    -- Find all seeds in the garden
+    for _, plant in pairs(garden:GetChildren()) do
+        if plant.Name == "Seed" then
+            -- Water the plant (change its state)
+            if plant:FindFirstChild("Watered") then
+                plant.Watered.Value = true
+            else
+                local watered = Instance.new("BoolValue")
+                watered.Name = "Watered"
+                watered.Value = true
+                watered.Parent = plant
+            end
+            
+            -- Change plant appearance to show it's watered
+            plant.Color = Color3.fromRGB(0, 255, 0)  -- Green color when watered
+        end
+    end
+end)       end
+    end
+end)
