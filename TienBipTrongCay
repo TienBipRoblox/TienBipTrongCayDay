@@ -1,92 +1,63 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>UI Library Demo</title>
+local Window = Library:MakeWindow({
+    Title = "TienBip",
+    SubTitle = "by You",
+    SaveFolder = "RedzHub"
+})
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+-- TAB
+local Tab = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998"
+})
 
-  <style>
-    /* UI kiểu Material */
-    .mui-card {
-      width: 260px;
-      padding: 16px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      font-family: Arial;
-    }
+-- SECTION
+local Section = Tab:AddSection({
+    Name = "Main Functions"
+})
 
-    .mui-btn {
-      background: #1976d2;
-      color: white;
-      padding: 8px 14px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+-- BUTTON
+Tab:AddButton({
+    Name = "Test Button",
+    Callback = function()
+        print("Redz Hub Button Clicked")
+    end
+})
 
-    /* UI kiểu Ant Design */
-    .ant-form {
-      width: 260px;
-      padding: 16px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-family: Arial;
-    }
+-- TOGGLE
+Tab:AddToggle({
+    Name = "Auto Farm",
+    Default = false,
+    Callback = function(Value)
+        print("Auto Farm:", Value)
+    end
+})
 
-    .ant-form input {
-      width: 100%;
-      padding: 6px;
-      margin-top: 4px;
-      margin-bottom: 10px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
+-- SLIDER
+Tab:AddSlider({
+    Name = "WalkSpeed",
+    Min = 16,
+    Max = 200,
+    Default = 16,
+    Increment = 1,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end
+})
 
-    .ant-btn {
-      background: #1677ff;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  </style>
-</head>
+-- DROPDOWN
+Tab:AddDropdown({
+    Name = "Select Mode",
+    Options = {"Easy", "Normal", "Hard"},
+    Default = "Easy",
+    Callback = function(Value)
+        print("Mode:", Value)
+    end
+})
 
-<body class="bg-gray-100 p-6">
-  <h1 class="text-2xl font-bold mb-6">UI Library Demo</h1>
+-- NOTIFICATION
+Library:Notify({
+    Title = "TienBop Hub",
+    Content = "UI Loaded Successfully!",
+    Duration = 5
+})
 
-  <div class="flex gap-6 flex-wrap">
-
-    <!-- Card HTML/CSS -->
-    <div class="mui-card">
-      <h3 class="text-lg font-bold">Basic UI Card</h3>
-      <p>HTML + CSS thuần</p>
-      <button class="mui-btn">Click</button>
-    </div>
-
-    <!-- Ant Design style -->
-    <div class="ant-form">
-      <h3 class="font-bold mb-2">Login Form</h3>
-      <label>Username</label>
-      <input type="text" placeholder="Enter username">
-      <label>Password</label>
-      <input type="password" placeholder="Enter password">
-      <button class="ant-btn">Login</button>
-    </div>
-
-    <!-- Tailwind UI -->
-    <div class="max-w-sm p-6 bg-white rounded-xl shadow-md">
-      <h2 class="text-xl font-bold">Tailwind UI</h2>
-      <p class="text-gray-600">Nhanh, gọn, đẹp</p>
-      <button class="mt-4 px-4 py-2 bg-green-500 text-white rounded">
-        Click
-      </button>
-    </div>
-
-  </div>
-</body>
-</html>
