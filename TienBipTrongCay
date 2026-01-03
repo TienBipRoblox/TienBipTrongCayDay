@@ -1,56 +1,92 @@
-ScreenGui
- └─ MainFrame
-     ├─ UICorner
-     ├─ Title
-     ├─ Button1
-     └─ Button2
--- Tạo ScreenGui
-local gui = Instance.new("ScreenGui")
-gui.Name = "MyUI"
-gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>UI Library Demo</title>
 
--- Frame chính
-local main = Instance.new("Frame")
-main.Parent = gui
-main.Size = UDim2.new(0, 300, 0, 200)
-main.Position = UDim2.new(0.5, -150, 0.5, -100)
-main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-main.Active = true
-main.Draggable = true
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
--- Bo góc
-local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 12)
-corner.Parent = main
+  <style>
+    /* UI kiểu Material */
+    .mui-card {
+      width: 260px;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      font-family: Arial;
+    }
 
--- Tiêu đề
-local title = Instance.new("TextLabel")
-title.Parent = main
-title.Size = UDim2.new(1, 0, 0, 40)
-title.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-title.Text = "My Roblox Script"
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.Font = Enum.Font.GothamBold
-title.TextSize = 18
+    .mui-btn {
+      background: #1976d2;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
--- Nút 1
-local btn1 = Instance.new("TextButton")
-btn1.Parent = main
-btn1.Size = UDim2.new(0.8, 0, 0, 40)
-btn1.Position = UDim2.new(0.1, 0, 0.35, 0)
-btn1.Text = "ON / OFF"
-btn1.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-btn1.TextColor3 = Color3.new(1,1,1)
-btn1.Font = Enum.Font.Gotham
-btn1.TextSize = 16
+    /* UI kiểu Ant Design */
+    .ant-form {
+      width: 260px;
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: Arial;
+    }
 
--- Bo góc nút
-Instance.new("UICorner", btn1)
+    .ant-form input {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
 
--- Sự kiện nút
-local toggle = false
-btn1.MouseButton1Click:Connect(function()
-	toggle = not toggle
-	btn1.Text = toggle and "ON" or "OFF"
-	print("Toggle:", toggle)
-end)
+    .ant-btn {
+      background: #1677ff;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 p-6">
+  <h1 class="text-2xl font-bold mb-6">UI Library Demo</h1>
+
+  <div class="flex gap-6 flex-wrap">
+
+    <!-- Card HTML/CSS -->
+    <div class="mui-card">
+      <h3 class="text-lg font-bold">Basic UI Card</h3>
+      <p>HTML + CSS thuần</p>
+      <button class="mui-btn">Click</button>
+    </div>
+
+    <!-- Ant Design style -->
+    <div class="ant-form">
+      <h3 class="font-bold mb-2">Login Form</h3>
+      <label>Username</label>
+      <input type="text" placeholder="Enter username">
+      <label>Password</label>
+      <input type="password" placeholder="Enter password">
+      <button class="ant-btn">Login</button>
+    </div>
+
+    <!-- Tailwind UI -->
+    <div class="max-w-sm p-6 bg-white rounded-xl shadow-md">
+      <h2 class="text-xl font-bold">Tailwind UI</h2>
+      <p class="text-gray-600">Nhanh, gọn, đẹp</p>
+      <button class="mt-4 px-4 py-2 bg-green-500 text-white rounded">
+        Click
+      </button>
+    </div>
+
+  </div>
+</body>
+</html>
