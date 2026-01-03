@@ -1,25 +1,56 @@
--- Watering the plants
-local tool = script.Parent  -- The watering can
-local garden = workspace.Garden -- Where the garden is located
+ScreenGui
+ └─ MainFrame
+     ├─ UICorner
+     ├─ Title
+     ├─ Button1
+     └─ Button2
+-- Tạo ScreenGui
+local gui = Instance.new("ScreenGui")
+gui.Name = "MyUI"
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-tool.Activated:Connect(function()
-    -- Find all seeds in the garden
-    for _, plant in pairs(garden:GetChildren()) do
-        if plant.Name == "Seed" then
-            -- Water the plant (change its state)
-            if plant:FindFirstChild("Watered") then
-                plant.Watered.Value = true
-            else
-                local watered = Instance.new("BoolValue")
-                watered.Name = "Watered"
-                watered.Value = true
-                watered.Parent = plant
-            end
-            
-            -- Change plant appearance to show it's watered
-            plant.Color = Color3.fromRGB(0, 255, 0)  -- Green color when watered
-        end
-    end
-end)       end
-    end
+-- Frame chính
+local main = Instance.new("Frame")
+main.Parent = gui
+main.Size = UDim2.new(0, 300, 0, 200)
+main.Position = UDim2.new(0.5, -150, 0.5, -100)
+main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+main.Active = true
+main.Draggable = true
+
+-- Bo góc
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 12)
+corner.Parent = main
+
+-- Tiêu đề
+local title = Instance.new("TextLabel")
+title.Parent = main
+title.Size = UDim2.new(1, 0, 0, 40)
+title.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+title.Text = "My Roblox Script"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 18
+
+-- Nút 1
+local btn1 = Instance.new("TextButton")
+btn1.Parent = main
+btn1.Size = UDim2.new(0.8, 0, 0, 40)
+btn1.Position = UDim2.new(0.1, 0, 0.35, 0)
+btn1.Text = "ON / OFF"
+btn1.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+btn1.TextColor3 = Color3.new(1,1,1)
+btn1.Font = Enum.Font.Gotham
+btn1.TextSize = 16
+
+-- Bo góc nút
+Instance.new("UICorner", btn1)
+
+-- Sự kiện nút
+local toggle = false
+btn1.MouseButton1Click:Connect(function()
+	toggle = not toggle
+	btn1.Text = toggle and "ON" or "OFF"
+	print("Toggle:", toggle)
 end)
